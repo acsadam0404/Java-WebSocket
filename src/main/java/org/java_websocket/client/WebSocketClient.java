@@ -334,11 +334,12 @@ public abstract class WebSocketClient extends WebSocketAdapter implements Runnab
 
 	// ABTRACT METHODS /////////////////////////////////////////////////////////
 	public abstract void onOpen( ServerHandshake handshakedata );
-	public abstract void onMessage( String message );
+	public void onMessage( String message ) {
+
+	}
 	public abstract void onClose( int code, String reason, boolean remote );
 	public abstract void onError( Exception ex );
-	public void onMessage( ByteBuffer bytes ) {
-	}
+	public abstract void onMessage( ByteBuffer bytes );
 	public void onFragment( Framedata frame ) {
 	}
 

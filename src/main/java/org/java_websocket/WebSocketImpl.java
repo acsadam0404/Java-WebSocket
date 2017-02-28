@@ -370,13 +370,7 @@ public class WebSocketImpl implements WebSocket {
 
 				} else if( current_continuous_frame_opcode != null ) {
 					throw new InvalidDataException( CloseFrame.PROTOCOL_ERROR, "Continuous frame sequence not completed." );
-				} else if( curop == Opcode.TEXT ) {
-					try {
-						wsl.onWebsocketMessage( this, Charsetfunctions.stringUtf8( f.getPayloadData() ) );
-					} catch ( RuntimeException e ) {
-						wsl.onWebsocketError( this, e );
-					}
-				} else if( curop == Opcode.BINARY ) {
+				} if( curop == Opcode.BINARY || curop == Opcode.TEXT ) {
 					try {
 						wsl.onWebsocketMessage( this, f.getPayloadData() );
 					} catch ( RuntimeException e ) {
